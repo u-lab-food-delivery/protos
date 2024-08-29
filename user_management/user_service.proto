@@ -4,6 +4,8 @@ package user_management;
 
 import "google/protobuf/empty.proto";
 
+option go_package = "genprotos/user_management";
+
 service UserService {
 
     // User CRUD Operations
