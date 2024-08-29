@@ -1,0 +1,171 @@
+syntax = "proto3";
+
+package user_management;
+
+import "google/protobuf/empty.proto";
+
+service UserService {
+
+    // User CRUD Operations
+    rpc CreateUser (CreateUserRequest) returns (UserResponse);
+    rpc GetUser (GetUserRequest) returns (UserResponse);
+    rpc UpdateUser (UpdateUserRequest) returns (UserResponse);
+    rpc DeleteUser (DeleteUserRequest) returns (google.protobuf.Empty);
+    rpc ListUsers (ListUsersRequest) returns (ListUsersResponse);
+
+    // Address Operations
+    rpc AddUserAddress (AddUserAddressRequest) returns (UserAddressResponse);
+    rpc GetUserAddress (GetUserAddressRequest) returns (UserAddressResponse);
+    rpc UpdateUserAddress (UpdateUserAddressRequest) returns (UserAddressResponse);
+    rpc DeleteUserAddress (DeleteUserAddressRequest) returns (google.protobuf.Empty);
+    rpc ListUserAddresses (ListUserAddressesRequest) returns (ListUserAddressesResponse);
+
+    // Cart Operations
+    rpc GetUserCart (GetUserCartRequest) returns (UserCartResponse);
+    rpc AddCartItem (AddCartItemRequest) returns (CartItemResponse);
+    rpc UpdateCartItem (UpdateCartItemRequest) returns (CartItemResponse);
+    rpc DeleteCartItem (DeleteCartItemRequest) returns (google.protobuf.Empty);
+    rpc ListCartItems (ListCartItemsRequest) returns (ListCartItemsResponse);
+}
+
+// User Messages
+message User {
+    string id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string phone_number = 4;
+    string email = 5;
+    string img_url = 6;
+    string role = 7;
+    string password_hash = 8;
+    string username = 9;
+    string last_login = 10;
+    string created_at = 11;
+    string updated_at = 12;
+    string deleted_at = 13;
+}
+
+// Address Messages
+message UserAddress {
+    string id = 1;
+    string user_id = 2;
+    string street_address = 3;
+    string post_code = 4;
+    string city = 5;
+    string state = 6;
+    string lat = 7;
+    string lon = 8;
+    string country = 9;
+    string address_type = 10;
+}
+
+// Cart Messages
+message UserCart {
+    string id = 1;
+    string user_id = 2;
+    string status = 3;
+    string created_at = 4;
+    string updated_at = 5;
+}
+
+message CartItem {
+    string id = 1;
+    string cart_id = 2;
+    string product_id = 3;
+    string product_name = 4;
+    int32 quantity = 5;
+    string price = 6;
+    string created_at = 7;
+    string updated_at = 8;
+}
+
+// Requests and Responses
+
+// User Requests and Responses
+message CreateUserRequest {
+    User user = 1;
+}
+
+message GetUserRequest {
+    string id = 1;
+}
+
+message UpdateUserRequest {
+    User user = 1;
+}
+
+message DeleteUserRequest {
+    string id = 1;
+}
+
+message ListUsersRequest {}
+
+message UserResponse {
+    User user = 1;
+}
+
+message ListUsersResponse {
+    repeated User users = 1;
+}
+
+// Address Requests and Responses
+message AddUserAddressRequest {
+    UserAddress address = 1;
+}
+
+message GetUserAddressRequest {
+    string id = 1;
+}
+
+message UpdateUserAddressRequest {
+    UserAddress address = 1;
+}
+
+message DeleteUserAddressRequest {
+    string id = 1;
+}
+
+message ListUserAddressesRequest {
+    string user_id = 1;
+}
+
+message UserAddressResponse {
+    UserAddress address = 1;
+}
+
+message ListUserAddressesResponse {
+    repeated UserAddress addresses = 1;
+}
+
+// Cart Requests and Responses
+message GetUserCartRequest {
+    string user_id = 1;
+}
+
+message AddCartItemRequest {
+    CartItem item = 1;
+}
+
+message UpdateCartItemRequest {
+    CartItem item = 1;
+}
+
+message DeleteCartItemRequest {
+    string id = 1;
+}
+
+message ListCartItemsRequest {
+    string cart_id = 1;
+}
+
+message UserCartResponse {
+    UserCart cart = 1;
+}
+
+message CartItemResponse {
+    CartItem item = 1;
+}
+
+message ListCartItemsResponse {
+    repeated CartItem items = 1;
+}
