@@ -49,6 +49,7 @@ message RefreshTokenResponse {
 }
 
 message VerifyEmailRequest {
+    string verification_link = 2;
     string token = 1;
 }
 
