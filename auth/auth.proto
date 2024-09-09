@@ -21,6 +21,7 @@ message void {
 }
 
 message RegisterRequest {
+    string verification_link = 3;
     string email = 1;
     string password = 2;
 }
@@ -49,7 +50,6 @@ message RefreshTokenResponse {
 }
 
 message VerifyEmailRequest {
-    string verification_link = 2;
     string token = 1;
 }
 
