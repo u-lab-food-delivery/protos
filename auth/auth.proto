@@ -2,11 +2,22 @@ syntax = "proto3";
 
 package auth;
 
+option go_package = "genproto/auth";
+
 service AuthService {
     rpc Register (RegisterRequest) returns (RegisterResponse);
     rpc Login (LoginRequest) returns (LoginResponse);
     rpc RefreshToken (RefreshTokenRequest) returns (RefreshTokenResponse);
     rpc VerifyEmail (VerifyEmailRequest) returns (VerifyEmailResponse);
+    rpc CheckByEmail (CheckByEmailRequest) returns (void);
+}
+
+message CheckByEmailRequest {
+    string email = 1;
+}
+
+message void {
+
 }
 
 message RegisterRequest {
