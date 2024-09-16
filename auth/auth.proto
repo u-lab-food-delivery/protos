@@ -14,7 +14,16 @@ service AuthService {
     rpc RevokeToken (RevokeTokenRequest) returns (RevokeTokenResponse);
     rpc RefreshToken (RefreshTokenRequest) returns (RefreshTokenResponse);
     rpc VerifyEmail (VerifyEmailRequest) returns (VerifyEmailResponse);
-    rpc CheckByEmail (CheckByEmailRequest) returns (EmptyMessage); 
+    rpc CheckByEmail (CheckByEmailRequest) returns (EmptyMessage);  
+    rpc CheckVerificationLink (LinkRequest) returns (LinkResponse);
+}
+
+message LinkRequest {
+    string link = 1;
+}
+
+message LinkResponse {
+    string email = 1;
 }
 
 message RegisterRequest {
